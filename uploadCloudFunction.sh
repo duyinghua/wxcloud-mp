@@ -1,0 +1,1 @@
+"/Applications/wechatwebdevtools.app/Contents/MacOS/cli" cloud functions deploy --e prod-6g6y1fc9ba451c2e --n quickstartFunctions --r --project "/Users/duyinghua/test/wxcloud-mp" --report_first --report
