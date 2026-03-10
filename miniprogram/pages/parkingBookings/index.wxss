@@ -1,0 +1,330 @@
+/* 我的预订页样式 */
+page {
+  background-color: #0D1117;
+}
+
+.page-wrap {
+  background-color: #0D1117;
+  min-height: 100vh;
+  padding-bottom: 40rpx;
+}
+
+/* ===== Tab 栏 ===== */
+.tab-bar {
+  display: flex;
+  background: #161B27;
+  border-bottom: 1rpx solid #1E293B;
+  padding: 0 40rpx;
+}
+
+.tab-item {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  padding: 32rpx 0;
+  margin-right: 48rpx;
+  border-bottom: 3rpx solid transparent;
+  position: relative;
+}
+
+.tab-active {
+  border-bottom-color: #E94560;
+}
+
+.tab-text {
+  font-size: 28rpx;
+  color: #4B5563;
+  font-weight: 500;
+}
+
+.tab-active .tab-text {
+  color: #E2E8F0;
+  font-weight: 700;
+}
+
+.tab-badge {
+  background: #E94560;
+  border-radius: 20rpx;
+  min-width: 36rpx;
+  height: 36rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8rpx;
+}
+
+.badge-num {
+  font-size: 20rpx;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ===== 加载 ===== */
+.loading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 160rpx 0;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #1E293B;
+  border-top-color: #E94560;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 24rpx;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 26rpx;
+  color: #4B5563;
+}
+
+/* ===== 预订列表 ===== */
+.booking-list {
+  padding: 32rpx;
+}
+
+.active-card {
+  background: #161B27;
+  border: 1rpx solid #1E293B;
+  border-radius: 20rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  border-left: 4rpx solid #0F9B58;
+}
+
+.history-card {
+  background: #0F172A;
+  border: 1rpx solid #1A2035;
+  border-radius: 16rpx;
+  padding: 28rpx;
+  margin-bottom: 16rpx;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.card-lot-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #E2E8F0;
+  flex: 1;
+  margin-right: 16rpx;
+}
+
+.status-badge {
+  padding: 6rpx 18rpx;
+  border-radius: 6rpx;
+}
+
+.status-pending {
+  background: rgba(15, 155, 88, 0.15);
+  border: 1rpx solid rgba(15, 155, 88, 0.4);
+}
+
+.status-active {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1rpx solid rgba(59, 130, 246, 0.4);
+}
+
+.status-completed {
+  background: rgba(100, 116, 139, 0.15);
+  border: 1rpx solid rgba(100, 116, 139, 0.3);
+}
+
+.status-cancelled {
+  background: rgba(233, 69, 96, 0.1);
+  border: 1rpx solid rgba(233, 69, 96, 0.25);
+}
+
+.status-text {
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.status-pending .status-text { color: #0F9B58; }
+.status-active .status-text { color: #3B82F6; }
+.status-completed .status-text { color: #64748B; }
+.status-cancelled .status-text { color: #E94560; }
+
+.spot-display {
+  display: flex;
+  gap: 32rpx;
+  margin-bottom: 20rpx;
+  align-items: center;
+}
+
+.spot-number-block {
+  background: rgba(15, 155, 88, 0.1);
+  border: 2rpx solid rgba(15, 155, 88, 0.4);
+  border-radius: 16rpx;
+  padding: 20rpx 28rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.spot-number {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #0F9B58;
+  line-height: 1.2;
+}
+
+.spot-label {
+  font-size: 20rpx;
+  color: #4B5563;
+  margin-top: 4rpx;
+}
+
+.booking-time-block {
+  flex: 1;
+}
+
+.time-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.time-icon {
+  font-size: 16rpx;
+  color: #4B5563;
+  width: 20rpx;
+}
+
+.time-val {
+  font-size: 26rpx;
+  color: #94A3B8;
+}
+
+.time-connector {
+  width: 2rpx;
+  height: 24rpx;
+  background: #1E293B;
+  margin: 6rpx 0 6rpx 9rpx;
+}
+
+.card-address {
+  font-size: 24rpx;
+  color: #4B5563;
+  margin-bottom: 24rpx;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1rpx solid #1E293B;
+  padding-top: 24rpx;
+}
+
+.fee-info {
+  display: flex;
+  align-items: baseline;
+  gap: 12rpx;
+}
+
+.fee-label {
+  font-size: 24rpx;
+  color: #4B5563;
+}
+
+.fee-amount {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #F59E0B;
+}
+
+.cancel-btn {
+  background: rgba(233, 69, 96, 0.1);
+  border: 1rpx solid rgba(233, 69, 96, 0.4);
+  border-radius: 12rpx;
+  padding: 16rpx 32rpx;
+  transition: all 0.15s;
+}
+
+.cancel-btn:active { opacity: 0.7; }
+.btn-cancelling { opacity: 0.5; }
+
+.cancel-text {
+  font-size: 26rpx;
+  color: #E94560;
+  font-weight: 600;
+}
+
+.history-info-row {
+  display: flex;
+  gap: 0;
+}
+
+.history-spot,
+.history-time,
+.history-fee {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.h-label {
+  font-size: 20rpx;
+  color: #374151;
+}
+
+.h-value {
+  font-size: 26rpx;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.fee-color { color: #F59E0B; }
+
+/* ===== 空状态 ===== */
+.empty-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 0;
+}
+
+.empty-icon-text {
+  font-size: 80rpx;
+  font-weight: 900;
+  color: #1E293B;
+  margin-bottom: 24rpx;
+}
+
+.empty-title {
+  font-size: 30rpx;
+  color: #4B5563;
+  margin-bottom: 12rpx;
+}
+
+.empty-sub {
+  font-size: 24rpx;
+  color: #374151;
+  margin-bottom: 40rpx;
+}
+
+.go-book-btn {
+  background: #E94560;
+  border-radius: 40rpx;
+  padding: 20rpx 60rpx;
+  font-size: 28rpx;
+  color: #fff;
+  font-weight: 600;
+}

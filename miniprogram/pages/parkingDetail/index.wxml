@@ -1,0 +1,157 @@
+<!-- 车位预订详情页 -->
+<view class="page-wrap">
+
+  <!-- 加载状态 -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载车位信息...</text>
+  </view>
+
+  <block wx:if="{{!loading && lot}}">
+    <!-- 车场信息头部 -->
+    <view class="lot-header">
+      <view class="lot-title-row">
+        <text class="lot-title">{{lot.name}}</text>
+        <view class="refresh-btn" bindtap="onRefresh">
+          <text class="refresh-icon">↻</text>
+        </view>
+      </view>
+      <text class="lot-address">◎ {{lot.address}}</text>
+
+      <!-- 车位统计 -->
+      <view class="spot-stats">
+        <view class="stat-block">
+          <text class="stat-num green">{{availableCount}}</text>
+          <text class="stat-label">可用</text>
+        </view>
+        <view class="stat-block">
+          <text class="stat-num red">{{totalCount - availableCount}}</text>
+          <text class="stat-label">已占</text>
+        </view>
+        <view class="stat-block">
+          <text class="stat-num gray">{{totalCount}}</text>
+          <text class="stat-label">总计</text>
+        </view>
+        <view class="stat-block">
+          <text class="stat-num yellow">¥{{lot.pricePerHour}}/h</text>
+          <text class="stat-label">收费</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 图例说明 -->
+    <view class="legend-bar">
+      <view class="legend-item">
+        <view class="legend-dot dot-available"></view>
+        <text class="legend-text">可用</text>
+      </view>
+      <view class="legend-item">
+        <view class="legend-dot dot-reserved"></view>
+        <text class="legend-text">已预订</text>
+      </view>
+      <view class="legend-item">
+        <view class="legend-dot dot-occupied"></view>
+        <text class="legend-text">已占用</text>
+      </view>
+      <view class="legend-item">
+        <view class="legend-dot dot-disabled"></view>
+        <text class="legend-text">禁用</text>
+      </view>
+      <view class="legend-item">
+        <view class="legend-dot dot-vip"></view>
+        <text class="legend-text">VIP</text>
+      </view>
+    </view>
+
+    <!-- 车位矩阵 -->
+    <view class="spots-container">
+      <view
+        class="row-section"
+        wx:for="{{rowKeys}}"
+        wx:key="*this"
+        wx:for-item="rowKey"
+      >
+        <!-- 行标签 -->
+        <view class="row-label">
+          <text class="row-label-text">{{rowKey}} 区</text>
+        </view>
+
+        <!-- 车位格子 -->
+        <view class="spots-grid">
+          <view
+            class="spot-cell spot-{{item.status}} {{item.type === 'vip' ? 'spot-vip-type' : ''}} {{item.type === 'disabled' ? 'spot-disabled-type' : ''}}"
+            wx:for="{{rows[rowKey]}}"
+            wx:key="_id"
+            data-spot="{{item}}"
+            bindtap="onSpotTap"
+          >
+            <text class="spot-no">{{item.spotNo}}</text>
+            <text class="spot-type-label" wx:if="{{item.type === 'vip'}}">V</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 预订面板（底部弹出） -->
+  <view class="booking-mask" wx:if="{{showBookingPanel}}" bindtap="onClosePanel"></view>
+  <view class="booking-panel {{showBookingPanel ? 'panel-show' : ''}}">
+    <view class="panel-handle"></view>
+
+    <view class="panel-header">
+      <text class="panel-title">预订车位</text>
+      <text class="panel-close" bindtap="onClosePanel">✕</text>
+    </view>
+
+    <view class="selected-spot-info" wx:if="{{selectedSpot}}">
+      <view class="spot-badge">
+        <text class="spot-badge-no">{{selectedSpot.spotNo}}</text>
+      </view>
+      <view class="spot-detail-info">
+        <text class="spot-detail-name">{{lot.name}}</text>
+        <text class="spot-detail-type">
+          {{selectedSpot.type === 'vip' ? 'VIP车位' : '普通车位'}} · {{selectedSpot.row}}区
+        </text>
+      </view>
+    </view>
+
+    <!-- 时长选择 -->
+    <view class="hours-section">
+      <text class="section-label">预订时长</text>
+      <view class="hours-grid">
+        <view
+          class="hours-item {{selectedHours === item ? 'hours-active' : ''}}"
+          wx:for="{{hoursOptions}}"
+          wx:key="*this"
+          data-hours="{{item}}"
+          bindtap="onHoursTap"
+        >
+          <text class="hours-num">{{item}}</text>
+          <text class="hours-unit">小时</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 费用预估 -->
+    <view class="fee-section">
+      <view class="fee-row">
+        <text class="fee-label">停车费用</text>
+        <text class="fee-value">¥{{lot.pricePerHour}} × {{selectedHours}}h</text>
+      </view>
+      <view class="fee-row fee-total-row">
+        <text class="fee-total-label">预估总费用</text>
+        <text class="fee-total-value">¥{{estimatedFee}}</text>
+      </view>
+    </view>
+
+    <!-- 确认按钮 -->
+    <view
+      class="confirm-btn {{booking ? 'btn-loading' : ''}}"
+      bindtap="onConfirmBook"
+    >
+      <text class="confirm-btn-text">{{booking ? '预订中...' : '确认预订'}}</text>
+    </view>
+
+    <text class="panel-tip">* 预订后请在规定时间内到达，超时自动取消</text>
+  </view>
+</view>

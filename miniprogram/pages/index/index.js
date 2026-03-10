@@ -79,6 +79,14 @@ Page({
         item: [],
       },
     ],
+    featureList: [
+      {
+        title: "停车预订",
+        tip: "查看车场车位 · 实时预订",
+        page: "parkingList",
+        icon: "P",
+      },
+    ],
     haveCreateCollection: false,
     title: "",
     content: "",
@@ -134,6 +142,11 @@ Page({
         url: `/pages/${page}/index?envId=${this.data.selectedEnv?.envId}`,
       });
     }
+  },
+
+  onFeatureTap(e) {
+    const { page } = e.currentTarget.dataset;
+    wx.navigateTo({ url: `/pages/${page}/index` });
   },
 
   onClickDatabase(powerList, selectedItem) {

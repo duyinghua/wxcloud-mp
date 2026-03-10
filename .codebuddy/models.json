@@ -1,0 +1,15 @@
+{
+  "models": [
+    {
+      "id": "claude-4.6-sonnet",
+      "name": "claude-4.6-sonnet",
+      "vendor": "claude",
+      "apiKey": "24f798dd-ec3e-41a7-a0fc-9adb7b53db0a",
+      "maxInputTokens": 200000,
+      "maxOutputTokens": 8192,
+      "url": "https://openapi-ait.ke.com/v1/chat/completions",
+      "supportsToolCall": true,
+      "supportsImages": true
+    }
+  ]
+}

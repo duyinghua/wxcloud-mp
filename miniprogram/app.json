@@ -1,7 +1,10 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/example/index"
+    "pages/example/index",
+    "pages/parkingList/index",
+    "pages/parkingDetail/index",
+    "pages/parkingBookings/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

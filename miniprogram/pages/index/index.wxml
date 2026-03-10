@@ -26,4 +26,25 @@
     </view>
   </view>
   <cloud-tip-modal showTipProps="{{showTip}}" title="{{title}}" content="{{content}}"></cloud-tip-modal>
+
+  <!-- 功能入口区 -->
+  <view class="feature-section">
+    <view class="feature-section-title">应用功能</view>
+    <view
+      class="feature-item"
+      wx:for="{{featureList}}"
+      wx:key="title"
+      data-page="{{item.page}}"
+      bindtap="onFeatureTap"
+    >
+      <view class="feature-icon-wrap">
+        <text class="feature-icon-text">{{item.icon}}</text>
+      </view>
+      <view class="feature-info">
+        <text class="feature-title">{{item.title}}</text>
+        <text class="feature-tip">{{item.tip}}</text>
+      </view>
+      <image class="feature-arrow" src="../../images/arrow.svg"></image>
+    </view>
+  </view>
 </view>
